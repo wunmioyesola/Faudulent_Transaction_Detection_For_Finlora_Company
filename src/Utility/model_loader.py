@@ -21,6 +21,6 @@ def load_registered_model():
     return model
 
 
-if __name__ == "__main__":
-    loaded_model = load_registered_model()
-    print("Model loaded successfully:", loaded_model)
+#if __name__ == "__main__":
+    #loaded_model = load_registered_model()
+    #print("Model loaded successfully:", loaded_model)
