@@ -87,12 +87,38 @@ def engineer_feature(data):
         global historical_data
         df = data.copy()
 
-        #numeric_cols = ['amount_usd', 'ip_risk_score', 'device_trust_score', 'risk_score_internal', 'corridor_risk', 'account_age_days']
-        #for col in numeric_cols:
-            #if col in df.columns:
-                #df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0.0)
+        df = df.replace({
+             'True': 1, 'False': 0,
+            True: 1, False: 0,
+            '1': 1, '0': 0
+        })
+                    #df['location_mismatch'] = df['location_mismatch'].map({
+                        #'True': 1, 'False': 0,
+                        #True: 1, False: 0,
+                        #'1': 1, '0': 0
+                    #})
 
-        if 'amount_usd' not in df.columns or df['amount_usd'].isna().sum():
+        #if 'location_mismatch' in df.columns:
+            #df['location_mismatch'] = df['location_mismatch'].map({
+                #'True': 1, 'False': 0,
+                #True: 1, False: 0,
+                #'1': 1, '0': 0
+            #}).fillna(0).astype(int)
+
+        #for col in df.columns:
+            #if df[col].dtype == 'object' or df[col].dtype == 'bool':
+                #df[col] = df[col].replace({
+                #'True': 1, 'False': 0,
+                #True: 1, False: 0,
+                #1': 1, '0': 0,
+                #'yes': 1, 'no': 0
+            #})
+            #try:
+                #df[col] = pd.to_numeric(df[col])
+            #except:
+                #pass
+
+        if 'amount_usd' not in df.columns or df['amount_usd'].isna().all():
             df['amount_usd'] = df.apply(
                 lambda row: calculate_amount_usd(row['amount_src'], row['source_currency']),
                 axis=1

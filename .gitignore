@@ -7,6 +7,7 @@ __pycache__/
 # env
 finlora_env/ 
 Finlora_Dataset/artifacts/
+.env
 
 
 # C extensions

@@ -11,3 +11,5 @@ fastapi
 uvicorn
 xgboost==2.1.4
 shap
+
+-e .

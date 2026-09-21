@@ -11,10 +11,17 @@ st.set_page_config(
     layout="wide"
 )
 
+st.title("Finlora Fraud Detection Dashboard")
+st.write("Welcome! Dashboard is up running.")
+
 
 API_URL = "http://127.0.0.1:8000"
 
-CSV_PATH = r"C:\Fraudulent_Transaction_Detection_For_Finlora_Company\Fraudulent_Transaction_Detection_For_Finlora_Company\Finlora Dataset\artifacts\Cleaned_Data.csv"
+BASE_DIR = Path(__file__).resolve().parent
+CSV_PATH = BASE_DIR / "Finlora_Dataset" / "artifacts" / "Cleaned_Data.csv"
+
+
+#CSV_PATH = r"C:\Fraudulent_Transaction_Detection_For_Finlora_Company\Fraudulent_Transaction_Detection_For_Finlora_Company\Finlora_Dataset\artifacts\Cleaned_Data.csv"
 
 
 @st.cache_data

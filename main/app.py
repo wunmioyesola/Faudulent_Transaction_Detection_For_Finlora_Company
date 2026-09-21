@@ -1,6 +1,6 @@
-#import sys
-#from pathlib import Path
-#sys.path.append(str(Path(__file__).resolve().parent.parent))
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 from fastapi import FastAPI, HTTPException
 from fastapi.encoders import jsonable_encoder
@@ -9,6 +9,7 @@ from typing import Optional
 import mlflow
 import mlflow.sklearn
 import pandas as pd
+from pathlib import Path
 
 from src.inference.prediction import (load_historical_data,
                                       predict_transaction,
@@ -35,9 +36,11 @@ async def startup_event():
         model = None
 
 try:
-        #csv_path = Path(__file__).resolve().parent.parent / "Finlora Dataset" / "artifacts" / "Cleaned_Data.csv"
-        csv_path = r"C:/Fraudulent_Transaction_Detection_For_Finlora_Company/Fraudulent_Transaction_Detection_For_Finlora_Company/Finlora Dataset/artifacts/Cleaned_Data.csv"
+        # csv_path = r"C:/Fraudulent_Transaction_Detection_For_Finlora_Company/Fraudulent_Transaction_Detection_For_Finlora_Company/Finlora Dataset/artifacts/Cleaned_Data.csv"
 
+        BASE_DIR = Path(__file__).resolve().parent.parent
+        csv_path = BASE_DIR / "Finlora_Dataset" / "artifacts" / "Cleaned_Data.csv"
+           
         historical_data = load_historical_data(csv_path)
         print("historical data has been successfully created")
 except Exception as e:
